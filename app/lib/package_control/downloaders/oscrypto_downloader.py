@@ -11,7 +11,6 @@ from urllib.parse import urlparse
 from urllib.request import parse_keqv_list, parse_http_list
 
 from .. import text
-from ..ca_certs import get_user_ca_bundle_path
 from ..console_write import console_write
 from ..deps.asn1crypto.util import OrderedDict
 from ..deps.asn1crypto import pem, x509
@@ -317,6 +316,8 @@ class OscryptoDownloader(DecodingDownloader, LimitingDownloader, CachingDownload
         return reused
 
     def setup_socket(self):
+        from ..ca_certs import get_user_ca_bundle_path
+
         """
         Create the oscrypto.tls.TLSSocket() object
         """

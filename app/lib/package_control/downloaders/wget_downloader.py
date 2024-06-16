@@ -3,7 +3,6 @@ import re
 import sys
 import tempfile
 
-from ..ca_certs import get_ca_bundle_path
 from ..console_write import console_write
 from .cli_downloader import CliDownloader
 from .non_http_error import NonHttpError
@@ -41,6 +40,7 @@ class WgetDownloader(CliDownloader, DecodingDownloader, LimitingDownloader, Cach
         pass
 
     def download(self, url, error_message, timeout, tries, prefer_cached=False):
+        from ..ca_certs import get_ca_bundle_path
         """
         Downloads a URL and returns the contents
 

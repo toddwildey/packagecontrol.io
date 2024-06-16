@@ -13,7 +13,6 @@ from urllib.error import HTTPError, URLError
 from socket import error as ConnectionError
 
 from .. import text
-from ..ca_certs import get_ca_bundle_path, get_user_ca_bundle_path
 from ..console_write import console_write
 from ..http.validating_https_handler import ValidatingHTTPSHandler
 from ..http.debuggable_http_handler import DebuggableHTTPHandler
@@ -234,6 +233,8 @@ class UrlLibDownloader(DecodingDownloader, LimitingDownloader, CachingDownloader
                 return handler
 
     def setup_opener(self, url, timeout):
+        from ..ca_certs import get_ca_bundle_path, get_user_ca_bundle_path
+
         """
         Sets up a urllib OpenerDirector to be used for requests. There is a
         fair amount of custom urllib code in Package Control, and part of it
